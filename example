@@ -1,0 +1,68 @@
+#include <iomanip>
+#include <cmath>
+#include <iostream>
+#include <algorithm> 
+
+std::string Abbreviate(std::string loc) {
+    sort(loc.begin(), loc.end());
+    
+    for (int i = 0; i < loc.length() - 1; ) {
+        if (loc[i] == loc[i + 1]) {
+            loc[i] = loc[i] + 1;
+            loc.erase(i + 1, 1);
+            sort(loc.begin(), loc.end());
+            i = 0;
+        } else {
+            i++;
+        }
+    }
+    return loc;
+}
+
+int LocToDec(std::string const & loc) {
+    int result = 0;
+    for (char ch : loc) {
+        result += pow(2, ch - 'a');
+    }
+    return result;
+}
+
+std::string DecToLoc(int dec) {
+    int cur_value = dec;
+    std::string loc{""};
+    while(dec != 0) {
+        int n = 0;
+        int value{0};
+        while(dec > value){
+            //std::cout << value;
+            n++;
+            value = pow(2, n);
+        }
+        char letter = static_cast<char>(97 + (n-1));
+        int value1 = pow(2,n-1);
+        dec -= value1;
+        loc += letter;
+        //std::cout << dec;
+    }
+  sort(loc.begin(), loc.end());
+    return loc;
+}
+
+int AddLoc(std::string str1, std::string str2)
+{
+return LocToDec(str1)+LocToDec(str2);
+}
+
+int main() {
+    std::string words = "accd";
+     std::string words2 = "accd";
+     int bob =AddLoc(words2, words);
+    //std::string newword = Abbreviate(words);
+    std::cout << bob << std::endl;
+    //int dec = LocToDec(words);
+    int chicken = 33;
+    std::string dec1 = DecToLoc(chicken);
+    //std::cout << newword << dec << std::endl;
+    std::cout << dec1 << std::endl;
+}
+
