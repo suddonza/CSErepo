@@ -1,3 +1,3 @@
 # CSErepo
 
-Zachary Suddon
+Zachary Arthur Suddon
